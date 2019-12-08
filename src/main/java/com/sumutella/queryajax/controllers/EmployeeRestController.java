@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 12/7/2019, Sat
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/employees")
 public class EmployeeRestController {
     private final EmployeeRepository employeeRepository;
 
@@ -20,7 +20,7 @@ public class EmployeeRestController {
         this.employeeRepository = employeeRepository;
     }
 
-    @GetMapping("/employees")
+    @GetMapping("")
     public ResponseEntity<Employee> getEmployees(){
         ResponseEntity<Employee> responseEntity = new ResponseEntity<>();
         responseEntity.setData(employeeRepository.findAll());
@@ -29,7 +29,7 @@ public class EmployeeRestController {
     }
 
 
-    @GetMapping("/employees/{empName}")
+    @GetMapping("/{empName}")
     public ResponseEntity<Employee> showEmployee(@PathVariable String empName){
         ResponseEntity<Employee> responseEntity = new ResponseEntity<>();
         responseEntity.setData(employeeRepository.findByFirstName(empName));
@@ -37,7 +37,7 @@ public class EmployeeRestController {
         return responseEntity;
     }
 
-    @PostMapping(value = "/employees/save")
+    @PostMapping(value = "/save")
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
         Employee savedEmployee = employeeRepository.save(employee);
 
