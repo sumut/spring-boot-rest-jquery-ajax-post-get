@@ -11,7 +11,7 @@ $( document ).ready(function() {
     function ajaxPost(){
 
         // PREPARE FORM DATA
-        var formData = {
+        var formEmployeeData = {
             firstName : $("#firstname").val(),
             lastName :  $("#lastname").val(),
             email   : $("#email").val(),
@@ -23,18 +23,16 @@ $( document ).ready(function() {
             type : "POST",
             contentType : "application/json",
             url : window.location + "api/employees/save",
-            data : JSON.stringify(formData),
+            data : JSON.stringify(formEmployeeData),
             dataType : 'json',
             success : function(result) {
                 if(result.status === "Done"){
                     $.each(result.data, function(key, value){
                         let employee = "Employee id = " + value.id + ", firstname = " +
                             value.firstName + ", lastName = " + value.lastName + "<br>";
-                        $("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
+                        $("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:5px 5px 5px 5px'>" +
                             "Post Successfully! <br>" +
-                            "---> Employee's Info:" + employee + "</p>");
-
-
+                            "Employee's Info:" + employee + "</p>");
                     });
                 }else{
                     $("#postResultDiv").html("<strong>Error</strong>");
