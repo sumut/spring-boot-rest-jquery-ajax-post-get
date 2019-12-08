@@ -3,10 +3,7 @@ package com.sumutella.queryajax.controllers;
 import com.sumutella.queryajax.entities.Employee;
 import com.sumutella.queryajax.entities.ResponseEntity;
 import com.sumutella.queryajax.repositories.EmployeeRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -39,4 +36,15 @@ public class EmployeeRestController {
         responseEntity.setStatus("done");
         return responseEntity;
     }
+
+    @PostMapping(value = "/employees/save")
+    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
+        Employee savedEmployee = employeeRepository.save(employee);
+
+        ResponseEntity<Employee> response = new ResponseEntity<>();
+        response.setStatus("Done");
+        response.getData().add(savedEmployee);
+        return response;
+    }
 }
+
