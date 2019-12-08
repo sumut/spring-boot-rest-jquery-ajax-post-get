@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class ResponseEntity {
+public class ResponseEntity<T> {
     private String status;
-    private List<Employee> data = new ArrayList<>();
+    private List<T> data = new ArrayList<>();
 }

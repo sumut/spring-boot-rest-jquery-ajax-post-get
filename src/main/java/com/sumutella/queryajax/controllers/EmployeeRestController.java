@@ -1,5 +1,6 @@
 package com.sumutella.queryajax.controllers;
 
+import com.sumutella.queryajax.entities.Employee;
 import com.sumutella.queryajax.entities.ResponseEntity;
 import com.sumutella.queryajax.repositories.EmployeeRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +24,8 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/employees")
-    public ResponseEntity getEmployees(){
-        ResponseEntity responseEntity = new ResponseEntity();
+    public ResponseEntity<Employee> getEmployees(){
+        ResponseEntity<Employee> responseEntity = new ResponseEntity<>();
         responseEntity.setData(employeeRepository.findAll());
         responseEntity.setStatus("Done");
         return responseEntity;
@@ -32,8 +33,8 @@ public class EmployeeRestController {
 
 
     @GetMapping("/employees/{empName}")
-    public ResponseEntity showEmployee(@PathVariable String empName){
-        ResponseEntity responseEntity = new ResponseEntity();
+    public ResponseEntity<Employee> showEmployee(@PathVariable String empName){
+        ResponseEntity<Employee> responseEntity = new ResponseEntity<>();
         responseEntity.setData(employeeRepository.findByFirstName(empName));
         responseEntity.setStatus("done");
         return responseEntity;
