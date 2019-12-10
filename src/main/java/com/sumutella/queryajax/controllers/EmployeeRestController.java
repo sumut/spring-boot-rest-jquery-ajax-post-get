@@ -33,7 +33,7 @@ public class EmployeeRestController {
     public ResponseEntity<Employee> showEmployee(@PathVariable String empName){
         ResponseEntity<Employee> responseEntity = new ResponseEntity<>();
         responseEntity.setData(employeeRepository.findByFirstName(empName));
-        responseEntity.setStatus("done");
+        responseEntity.setStatus("Done");
         return responseEntity;
     }
 
